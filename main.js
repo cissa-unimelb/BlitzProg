@@ -20,6 +20,8 @@ client.on('message', message =>{
     // Only take in the input if it starts with the !submit command
     if (message.content.startsWith('!submit')){
         code = message.content.replace('!submit', '');
+        code = code.replace("```", "");
+        code = code.replace("```", "");
         
         // Output the submission details
         message.channel.send('USER: ');
@@ -36,4 +38,4 @@ client.on('message', message =>{
 
 // END
 
-client.login('ODI5NDA4MjMzMTE3NDUwMzEy.YG3snA.YX_O1xli-I5T_E0jOdDnit_OhjE');
+client.login('ODI5NDA4MjMzMTE3NDUwMzEy.YG3snA.CUmfFOTI55dIUZU_BDBq4myBMvE');
