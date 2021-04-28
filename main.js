@@ -7,7 +7,7 @@ const client = new Discord.Client();
 
 // Only after this the bot will start reacting to information received from Discord
 client.on('ready', () => {
-    console.log('Code_Bot is online!');
+    console.log('BlitzProg is online!');
 });
 
 // Event listener for messages
@@ -30,12 +30,12 @@ client.on('message', message =>{
         // Sandbox the code submitted by the user
         message.channel.send('OUTPUT: ');
         s.run(code, function(output){
-            message.channel.send(output.result);
-            console.log(output.result);
+            message.channel.send(output.console);
+            console.log(output.console);
         })
     } 
 })
 
 // END
 
-client.login('ODI5NDA4MjMzMTE3NDUwMzEy.YG3snA.CUmfFOTI55dIUZU_BDBq4myBMvE');
+client.login('ODM2ODE2MDM0Mzk5NzgwOTA0.YIjfqQ.SPgldyY5bCcEjv-eceS5O484KIM');
