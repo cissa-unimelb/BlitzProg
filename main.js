@@ -1,9 +1,33 @@
-const Discord = require('discord.js');
-var Sandbox = require("sandbox");
-s = new Sandbox();
+// Load environment variables in local development
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 
-// Create an instance of a Discord client
-const client = new Discord.Client();
+// Load modules
+const discord = require('discord.js');
+const mongoose = require('mongoose');
+const Sandbox = require("sandbox");
+
+// Create an instance of a Discord client and Sandbox
+const client = new discord.Client();
+const sandbox = new Sandbox();
+
+// Connect to the database
+mongoose.connect(
+    process.env.DATABASE_URL,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    },
+    (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Connected to db!");
+      }
+    }
+);
 
 // Only after this the bot will start reacting to information received from Discord
 client.on('ready', () => {
@@ -29,13 +53,11 @@ client.on('message', message =>{
 
         // Sandbox the code submitted by the user
         message.channel.send('OUTPUT: ');
-        s.run(code, function(output){
+        sandbox.run(code, function(output){
             message.channel.send(output.console);
             console.log(output.console);
         })
     } 
 })
 
-// END
-
-client.login('ODM2ODE2MDM0Mzk5NzgwOTA0.YIjfqQ.SPgldyY5bCcEjv-eceS5O484KIM');
+client.login(process.env.DISCORD_API_KEY);
