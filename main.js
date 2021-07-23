@@ -1,7 +1,7 @@
 // Load environment variables in local development
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-}
+   require("dotenv").config(); 
+} 
 
 // Load modules
 const discord = require('discord.js');
@@ -34,12 +34,66 @@ client.on('ready', () => {
     console.log('BlitzProg is online!');
 });
 
-// Event listener for messages
+// Tracks game status
+game_active = false;
+join_active = false;
 
+// Event listener for messages
 client.on('message', message =>{
 
     // Making sure that the author of the message is not a bot
     if (message.author.bot) return false;
+
+    // Bot should only run in the BlitzProg channel
+    if (message.channel.id != '863230229488467978') return false; 
+
+    // Get player role 
+    let playerRole = message.guild.roles.cache.find(role => role.name === "Player");
+
+
+    // Game initating process
+    if (message.content == '!initiate' && game_active == false){
+      message.channel.send('Initiating Game');
+      game_active = true;
+      join_active = true;
+
+      // Add current player to game
+      let member = message.member;
+      member.roles.add(playerRole).catch(console.error);
+
+    }
+
+    // Game joining process
+    if (join_active == true){
+      if (message.content == '!join'){
+        message.channel.send('Adding Player');
+        let member = message.member;
+        member.roles.add(playerRole).catch(console.error);
+      } else if (message.content == '!start'&& message.member.roles.cache.some(role => role.name === "Player")){
+        message.channel.send('Starting Game');
+        join_active = false;
+      }
+    }
+
+    // Game ending process
+    if (message.content == '!end' && game_active == true){
+      message.channel.send('Ending Game');
+      game_active = false;
+
+      // Remove all players from the game 
+      const role = message.guild.roles.cache.find(role => role.name === 'Player');
+      message.guild.roles.create({
+        data: {
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          position: role.position,
+          permissions: role.permissions,
+          mentionable: role.mentionable
+        }         
+      })
+      role.delete('I had to')
+    }
 
     // Only take in the input if it starts with the !submit command
     if (message.content.startsWith('!submit')){
