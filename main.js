@@ -6,8 +6,7 @@ if (process.env.NODE_ENV !== "production") {
 // Load modules
 const discord = require('discord.js');
 const mongoose = require('mongoose');
-const Schema = require('./schema');
-const Game = require("./game");
+const Game = require("./src/game");
 const http = require("http");
 const express = require("express");
 const cors = require("cors");
@@ -15,7 +14,7 @@ const cors = require("cors");
 // Initialize API for submitting problems
 const app = express();
 const server = http.createServer(app);
-const api = require("./api");
+const api = require("./src/api");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
