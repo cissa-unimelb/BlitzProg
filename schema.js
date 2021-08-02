@@ -15,13 +15,17 @@ const TestCase = createModel("TestCase", {
 const Problem = createModel("Problem", {
     name: String,
     description: String,
-    status: {
+    difficulty: {
       type: String,
       enum: ["Easy", "Medium", "Hard"],
     },
+    status: {
+      type: String,
+      enum: ["Pending", "Verified", "Rejected"]
+    },
     cases: [TestCase.schema],
     author: String,
-    verified: Boolean
+    solution: String
 });
 
 module.exports = {
