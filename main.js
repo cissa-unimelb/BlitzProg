@@ -15,6 +15,7 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 const api = require("./src/api");
+const { list, read, testcases } = require("./src/admin");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -82,7 +83,7 @@ mongoose.connect(
         if (message.author.bot) return false;
 
         // Bot should only run in the BlitzProg channel
-        if (message.channel.id != '863230229488467978') return false; 
+        // if (message.channel.id != '863230229488467978') return false; 
 
         // Game commands
         if (message.content == '!initiate'){
@@ -99,6 +100,17 @@ mongoose.connect(
         }
         if (message.content == '!end') {
           game.end(message);
+        }
+
+        // Admin commands
+        if(message.content == '!list') {
+          list(message);
+        }
+        if(message.content.startsWith('!read')) {
+          read(message);
+        }
+        if(message.content.startsWith('!testcases')) {
+          testcases(message);
         }
       });
 
