@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const schema = require("../schema");
+const schema = require("./schema");
 
 /**
  * Submit a new problem with its test cases
