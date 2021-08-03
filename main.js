@@ -102,15 +102,17 @@ mongoose.connect(
           game.end(message);
         }
 
-        // Admin commands
-        if(message.content == '!list') {
-          list(message);
-        }
-        if(message.content.startsWith('!read')) {
-          read(message);
-        }
-        if(message.content.startsWith('!testcases')) {
-          testcases(message);
+        // Admin commands, only committee members can access
+        if(message.member.roles.cache.find(role => role.name === 'Committee')) {
+          if(message.content == '!list') {
+            list(message);
+          }
+          if(message.content.startsWith('!read')) {
+            read(message);
+          }
+          if(message.content.startsWith('!testcases')) {
+            testcases(message);
+          }
         }
       });
 
