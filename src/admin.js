@@ -26,7 +26,7 @@ async function read(message) {
     }
 
     // Handle verifying or rejecting the problem
-    message.channel.send(`${problem.name} by ${problem.author}\nID: ${problem._id}\n\n${problem.description}\n\nDifficulty: ${problem.difficulty}`)
+    message.channel.send(`'${problem.name}' by ${problem.author}\nID: ${problem._id}\n\n${problem.description}\n\nDifficulty: ${problem.difficulty}`)
         .then(async (reply) => {
             reply.react('👍');
             reply.react('👎');
