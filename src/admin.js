@@ -7,7 +7,12 @@ async function list(message) {
     for(let problem of pending) {
         strings.push(`'${problem.name}' by ${problem.author}\nID: ${problem._id}`);
     }
-    message.channel.send(strings.join('\n\n'));
+    if(strings.length == 0) {
+        message.channel.send("There are currently no pending problem submissions.");
+    }
+    else {
+        message.channel.send(strings.join('\n\n'));
+    }
 }
 
 async function read(message) {
