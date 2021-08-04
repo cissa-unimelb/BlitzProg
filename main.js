@@ -41,37 +41,6 @@ mongoose.connect(
       }
       console.log("Connected to db...");
 
-      // -- DEBUGGING TEST CODE START --
-      // // Add a problem to the database
-      // var problemObject = {
-      //   name: 'Problem Name',
-      //   description: 'Problem Description',
-      //   difficulty: "Easy",
-      //   status: "Pending",
-      //   cases: [{input: "1", output: "1", memoryLimitBytes: 1, timeLimitSeconds: 1}],
-      //   author: 'Problem Author',
-      //   verified: true
-      // };
-
-      // Schema.Problem.create(problemObject, function(err, result){
-      //   if (err) {
-      //     console.log(err);
-      //   } else {
-      //     console.log(result);
-      //   }
-      // });
-
-      // // Retrieve a problem from the database
-      // console.log('Hi');
-      // Schema.Problem.find({difficulty: "Easy"}, (err, data) =>{
-      //   if (err){
-      //     console.log(err);
-      //   } else {
-      //     console.log(data);
-      //   }
-      // })
-      // -- DEBUGGING TEST CODE END --
-
       // Only after this the bot will start reacting to information received from Discord
       client.on('ready', () => {
         console.log('BlitzProg is online!');
