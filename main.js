@@ -16,7 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const api = require("./src/api");
 const { list, read, testcases } = require("./src/admin");
-const { hi } = require("./src/help");
+const { helpCommand } = require("./src/help");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
