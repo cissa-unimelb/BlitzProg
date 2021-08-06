@@ -1,41 +1,52 @@
+const discord = require('discord.js');
+const client = new discord.Client();
+
 // Give a description of all admin and game commands
 async function helpCommand(message) {
-    message.channel.send("This is a test");
     if (message.member.roles.cache.some(role => role.name === "Committee")) {
-        let commands = `
-!list
-Present all pending problems 
+        message.channel.send({ embed: {
+            color: 3066993,
+            title: "Admin Command List",
+            fields: [{
+                name: "!list",
+                value: "Present all pending problems"
+            },
+            {
+                name: "!read (id)",
+                value: "Find a specific problem for verification"
+            },
+            {
+                name: "!testcases (id)",
+                value: "List the test cases for a specific problem"
+            }
 
-!read (id)
-Find a specific problem for verification
-
-!testcases (id)
-List the test cases for a specific problem
-`;
-        message.channel.send(commands);
+            
+        ]
+        }});
     } else {
-        let commands = `
-!initiate
-Gather players for a game of BlitzProg
-        
-!join
-Join the current BlitzProg game
-        
-!start
-Start a game of BlitzProg with the current players
-        
-!submit
-Submit your code for the current round and have it tested
-(You may submit as many times as you would like before the round ends but only your latest submission will be counted)
-        
-!end
-End the current game of BlitzProg   
-`;
-        message.channel.send(commands);
-    }
+        message.channel.send({ embed: {
+            color: 15158332,
+            title: "Player Command List",
+            fields: [{
+                name: "!init",
+                value: "Gather players for a game of BlitzProg"
+            },
+            {
+                name: "!start",
+                value: "Start a game of BlitzProg with the current players"
+            },
+            {
+                name: "!submit",
+                value: "Submit your code for the current round and have it tested"
+            },
+            {
+                name: "!end",
+                value: "End the current game of BlitzProg "
+            }
+        ]
+        }});
+    }    
 }
-
-
 
 module.exports = {
     helpCommand 

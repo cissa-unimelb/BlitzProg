@@ -49,6 +49,7 @@ mongoose.connect(
 
       // Handle messages sent
       client.on('message', message => {
+
         // Making sure that the author of the message is not a bot
         if (message.author.bot) return false;
 
@@ -87,6 +88,8 @@ mongoose.connect(
          if (message.content == '!help') {
           helpCommand(message);
         }
+
+        console.log('Hi');
 
 
       });

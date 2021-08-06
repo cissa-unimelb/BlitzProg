@@ -1,4 +1,5 @@
 const Sandbox = require("sandbox");
+const roundLen = 3000;
 
 // Maintains a game state and contains the command function definitions
 class Game {
@@ -17,7 +18,6 @@ class Game {
         let playerRole = message.guild.roles.cache.find(role => role.name === "Player");
 
         message.channel.send('Initiating Game');
-        this.running = true;
         this.canJoin = true;
 
         // Add current player to game
@@ -45,6 +45,7 @@ class Game {
         }
         message.channel.send('Starting Game');
         this.canJoin = false;
+        this.running = true;
     }
 
     end(message) {
