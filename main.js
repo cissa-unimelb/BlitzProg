@@ -94,7 +94,7 @@ mongoose.connect(
        
 
       // Login to Discord
-      client.login("ODI5NDA4MjMzMTE3NDUwMzEy.YG3snA.dBa6pdzsq2So3uwPUkhhMd9X7y4");
+      client.login(process.env.DISCORD_API_KEY);
 
       // Assign a port to run our API
       const port = 4040;
