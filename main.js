@@ -16,6 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const api = require("./src/api");
 const { list, read, testcases } = require("./src/admin");
+const { hi } = require("./src/help");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -40,37 +41,6 @@ mongoose.connect(
         return;
       }
       console.log("Connected to db...");
-
-      // -- DEBUGGING TEST CODE START --
-      // // Add a problem to the database
-      // var problemObject = {
-      //   name: 'Problem Name',
-      //   description: 'Problem Description',
-      //   difficulty: "Easy",
-      //   status: "Pending",
-      //   cases: [{input: "1", output: "1", memoryLimitBytes: 1, timeLimitSeconds: 1}],
-      //   author: 'Problem Author',
-      //   verified: true
-      // };
-
-      // Schema.Problem.create(problemObject, function(err, result){
-      //   if (err) {
-      //     console.log(err);
-      //   } else {
-      //     console.log(result);
-      //   }
-      // });
-
-      // // Retrieve a problem from the database
-      // console.log('Hi');
-      // Schema.Problem.find({difficulty: "Easy"}, (err, data) =>{
-      //   if (err){
-      //     console.log(err);
-      //   } else {
-      //     console.log(data);
-      //   }
-      // })
-      // -- DEBUGGING TEST CODE END --
 
       // Only after this the bot will start reacting to information received from Discord
       client.on('ready', () => {
@@ -112,10 +82,19 @@ mongoose.connect(
         if(message.content.startsWith('!testcases')) {
           testcases(message);
         }
+
+         // Help command
+         if (message.content == '!help') {
+          helpCommand(message);
+        }
+
+
       });
 
+       
+
       // Login to Discord
-      client.login(process.env.DISCORD_API_KEY);
+      client.login("ODI5NDA4MjMzMTE3NDUwMzEy.YG3snA.dBa6pdzsq2So3uwPUkhhMd9X7y4");
 
       // Assign a port to run our API
       const port = 4040;
