@@ -16,6 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const api = require("./src/api");
 const { list, read, testcases } = require("./src/admin");
+const { helpCommand } = require("./src/help");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -48,6 +49,7 @@ mongoose.connect(
 
       // Handle messages sent
       client.on('message', message => {
+
         // Making sure that the author of the message is not a bot
         if (message.author.bot) return false;
 
@@ -83,7 +85,18 @@ mongoose.connect(
             testcases(message);
           }
         }
+
+         // Help command
+         if (message.content == '!help') {
+          helpCommand(message);
+        }
+
+        console.log('Hi');
+
+
       });
+
+       
 
       // Login to Discord
       client.login(process.env.DISCORD_API_KEY);
