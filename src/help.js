@@ -18,9 +18,23 @@ async function helpCommand(message) {
             {
                 name: "!testcases (id)",
                 value: "List the test cases for a specific problem"
+            },
+            {
+                name: "!init",
+                value: "Gather players for a game of BlitzProg"
+            },
+            {
+                name: "!start",
+                value: "Start a game of BlitzProg with the current players"
+            },
+            {
+                name: "!submit",
+                value: "Submit your code for the current round and have it tested"
+            },
+            {
+                name: "!end",
+                value: "End the current game of BlitzProg "
             }
-
-            
         ]
         }});
     } else {
