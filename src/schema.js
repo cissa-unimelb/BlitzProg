@@ -8,7 +8,6 @@ function createModel(name, fields) {
 const TestCase = createModel("TestCase", {
     input: String,
     output: String,
-    memoryLimitBytes: Number, // Bytes
     timeLimitSeconds: Number  // Seconds
 });
 
